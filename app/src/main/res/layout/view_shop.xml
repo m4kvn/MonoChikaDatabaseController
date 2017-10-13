@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
+    android:padding="16dp"
     app:cardUseCompatPadding="true">
 
     <TextView
@@ -57,7 +58,6 @@
         android:layout_margin="8dp"
         android:text="@string/address"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shop_detail_longitude_label" />
 
@@ -120,18 +120,39 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintBaseline_toBaselineOf="@id/shop_detail_address_label"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/shop_detail_label_barrier"
+        app:layout_constraintStart_toEndOf="@id/shop_detail_label_barrier"
         tools:text="住所" />
+
+    <Button
+        android:id="@+id/shop_detail_delete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shop_detail_update"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_detail_address_label" />
+
+    <Button
+        android:id="@+id/shop_detail_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
+        app:layout_constraintBaseline_toBaselineOf="@id/shop_detail_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/shop_detail_delete" />
 
     <android.support.constraint.Group
         android:id="@+id/shop_detail_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="shop_detail_longitude,shop_detail_address,shop_detail_latitude,shop_detail_address_label,shop_detail_longitude_label,shop_detail_latitude_label,shop_detail_id_label,shop_detail_id"
+        app:constraint_referenced_ids="shop_detail_longitude,shop_detail_address,shop_detail_latitude,shop_detail_address_label,shop_detail_longitude_label,shop_detail_latitude_label,shop_detail_id_label,shop_detail_id,shop_detail_delete,shop_detail_update"
         tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

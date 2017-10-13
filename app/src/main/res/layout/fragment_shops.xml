@@ -17,24 +17,22 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/shops_list_swipe"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shop_recycler"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/view_shop"
+        tools:visibility="visible" />
 
-        <ListView
-            android:id="@+id/shops_listview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:divider="@null"
-            android:dividerHeight="8dp"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:visibility="gone"
-            tools:listitem="@layout/view_shop"
-            tools:visibility="visible" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+    <!--android:id="@+id/shops_list_swipe"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp">-->
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
 </android.support.constraint.ConstraintLayout>

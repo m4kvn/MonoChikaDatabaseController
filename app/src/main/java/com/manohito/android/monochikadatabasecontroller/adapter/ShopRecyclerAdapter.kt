@@ -14,7 +14,7 @@ class ShopRecyclerAdapter : RecyclerView.Adapter<ShopViewHolder>() {
     override fun getItemCount(): Int = mShops.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShopViewHolder {
-        return ShopViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_shop, parent))
+        return ShopViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_shop, parent, false))
     }
 
     override fun onBindViewHolder(holder: ShopViewHolder?, position: Int) {
