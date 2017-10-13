@@ -4,6 +4,7 @@ package com.manohito.android.monochikadatabasecontroller.fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -41,27 +42,23 @@ class ShopsFragment : Fragment() {
             divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.divider))
             mShopRecyclerView.addItemDecoration(divider)
 
-//            mShopListAdapter = ShopsListAdapter(context)
-//            mShopListView = findViewById(R.id.shops_listview)
-//            mShopListView.adapter = mShopListAdapter
-//
-//            findViewById<SwipeRefreshLayout>(R.id.shops_list_swipe).apply {
-//                setOnRefreshListener {
-//                    MonoChikaRetrofit.retrofit.create(ApiService::class.java).getShops()
-//                            .subscribeOn(Schedulers.io())
-//                            .observeOn(AndroidSchedulers.mainThread())
-//                            .doAfterTerminate {
-//                                isRefreshing = false
-//                            }
-//                            .subscribe({
-//                                Log.d("ShopsFragment", it.toString())
-//                                mShopListAdapter.setShops(it)
-//                                mShopListAdapter.notifyDataSetChanged()
-//                            }, {
-//                                Toast.makeText(context, "エラー: $it", Toast.LENGTH_SHORT).show()
-//                            })
-//                }
-//            }
+            findViewById<SwipeRefreshLayout>(R.id.shops_list_swipe).apply {
+                setOnRefreshListener {
+                    MonoChikaRetrofit.retrofit.create(ApiService::class.java).getShops()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .doAfterTerminate {
+                                isRefreshing = false
+                            }
+                            .subscribe({
+                                Log.d("ShopsFragment", it.toString())
+                                mShopRecyclerAdapter.setShops(it)
+                                mShopRecyclerAdapter.notifyDataSetChanged()
+                            }, {
+                                Toast.makeText(context, "エラー: $it", Toast.LENGTH_SHORT).show()
+                            })
+                }
+            }
         }
     }
 
