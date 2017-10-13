@@ -8,4 +8,7 @@
     <string name="longitude">Longitude</string>
     <string name="address">Address</string>
     <string name="id">ID</string>
+    <string name="remove">REMOVE</string>
+    <string name="update">UPDATE</string>
+    <string name="delete">DELETE</string>
 </resources>
