@@ -10,15 +10,17 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.ApiService
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.adapter.ShopRecyclerAdapter
-import com.manohito.android.monochikadatabasecontroller.adapter.ShopsListAdapter
+import com.manohito.android.monochikadatabasecontroller.model.Shop
+import com.manohito.android.monochikadatabasecontroller.view.holder.ShopViewHolder
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -35,7 +37,28 @@ class ShopsFragment : Fragment() {
         return inflater?.inflate(R.layout.fragment_shops, container, false)?.apply {
             mProgressBar = findViewById(R.id.shops_progress_bar)
             mShopRecyclerView = findViewById(R.id.shop_recycler)
-            mShopRecyclerAdapter = ShopRecyclerAdapter()
+
+            mShopRecyclerAdapter = object : ShopRecyclerAdapter() {
+                override fun onItemClicked(holder: ShopViewHolder) {
+                    holder.mExpandGroup.visibility = when (holder.mExpandGroup.visibility) {
+                        VISIBLE -> GONE
+                        else -> VISIBLE
+                    }
+                }
+
+                override fun onDeleteButtonClicked(shop: Shop, position: Int) {
+                    MonoChikaRetrofit.getApi().deleteShop(shop.id)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                removeAtPosition(position)
+                            }, {
+                                Log.d("ShopsFragment", it.toString())
+                                Toast.makeText(context, "エラー: $it", Toast.LENGTH_SHORT).show()
+                            })
+                }
+            }
+
             mShopRecyclerView.adapter = mShopRecyclerAdapter
 
             val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -64,7 +87,10 @@ class ShopsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        getData()
+    }
 
+    private fun getData() {
         mShopRecyclerView.visibility = View.GONE
         mProgressBar.visibility = View.VISIBLE
 
