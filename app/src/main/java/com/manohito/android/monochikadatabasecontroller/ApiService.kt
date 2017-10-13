@@ -30,4 +30,7 @@ interface ApiService {
 
     @GET("makers/{id}.json")
     fun getMaker(@Path("id") makerId: Int): Call<Maker>
+
+    @DELETE("makers/{id}.json")
+    fun deleteMaker(@Path("id") makerId: Int): Observable<Maker>
 }

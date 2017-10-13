@@ -15,7 +15,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.manohito.android.monochikadatabasecontroller.ApiService
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.adapter.ShopRecyclerAdapter
@@ -67,19 +66,15 @@ class ShopsFragment : Fragment() {
 
             findViewById<SwipeRefreshLayout>(R.id.shops_list_swipe).apply {
                 setOnRefreshListener {
-                    MonoChikaRetrofit.retrofit.create(ApiService::class.java).getShops()
+                    MonoChikaRetrofit.getApi().getShops()
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .doAfterTerminate {
-                                isRefreshing = false
-                            }
-                            .subscribe({
+                            .doAfterTerminate { isRefreshing = false }
+                            .subscribe {
                                 Log.d("ShopsFragment", it.toString())
                                 mShopRecyclerAdapter.setShops(it)
                                 mShopRecyclerAdapter.notifyDataSetChanged()
-                            }, {
-                                Toast.makeText(context, "エラー: $it", Toast.LENGTH_SHORT).show()
-                            })
+                            }
                 }
             }
         }
@@ -91,15 +86,15 @@ class ShopsFragment : Fragment() {
     }
 
     private fun getData() {
-        mShopRecyclerView.visibility = View.GONE
-        mProgressBar.visibility = View.VISIBLE
+        mShopRecyclerView.visibility = GONE
+        mProgressBar.visibility = VISIBLE
 
-        MonoChikaRetrofit.retrofit.create(ApiService::class.java).getShops()
+        MonoChikaRetrofit.getApi().getShops()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doAfterTerminate {
-                    mProgressBar.visibility = View.GONE
-                    mShopRecyclerView.visibility = View.VISIBLE
+                    mProgressBar.visibility = GONE
+                    mShopRecyclerView.visibility = VISIBLE
                 }
                 .subscribe({
                     Log.d("ShopsFragment", it.toString())
