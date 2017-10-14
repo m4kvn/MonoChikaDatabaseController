@@ -1,6 +1,7 @@
 package com.manohito.android.monochikadatabasecontroller.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -18,6 +19,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
+import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
+import com.manohito.android.monochikadatabasecontroller.activity.ShopCreateActivity
 import com.manohito.android.monochikadatabasecontroller.adapter.ShopRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.Shop
 import com.manohito.android.monochikadatabasecontroller.view.holder.ShopViewHolder
@@ -82,7 +85,8 @@ class ShopsFragment : Fragment() {
 
             mCreateButton = findViewById(R.id.shop_detail_create)
             mCreateButton.setOnClickListener {
-                Toast.makeText(context, "hello", Toast.LENGTH_LONG).show()
+                val intent = Intent(context, ShopCreateActivity::class.java)
+                startActivityForResult(intent, MainActivity.RESULT_SHOPS)
             }
         }
     }
