@@ -1,9 +1,10 @@
-package com.manohito.android.monochikadatabasecontroller
+package com.manohito.android.monochikadatabasecontroller.activity
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.adapter.TopViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
