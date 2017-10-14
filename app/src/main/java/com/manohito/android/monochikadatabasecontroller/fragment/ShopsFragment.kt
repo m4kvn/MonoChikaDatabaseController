@@ -2,6 +2,7 @@ package com.manohito.android.monochikadatabasecontroller.fragment
 
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
@@ -28,6 +29,7 @@ class ShopsFragment : Fragment() {
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mShopRecyclerView: RecyclerView
     private lateinit var mShopRecyclerAdapter: ShopRecyclerAdapter
+    private lateinit var mCreateButton: FloatingActionButton
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
@@ -76,6 +78,11 @@ class ShopsFragment : Fragment() {
                                 mShopRecyclerAdapter.notifyDataSetChanged()
                             }
                 }
+            }
+
+            mCreateButton = findViewById(R.id.shop_detail_create)
+            mCreateButton.setOnClickListener {
+                Toast.makeText(context, "hello", Toast.LENGTH_LONG).show()
             }
         }
     }
