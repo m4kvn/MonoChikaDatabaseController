@@ -8,13 +8,13 @@ import com.manohito.android.monochikadatabasecontroller.fragment.ShopsFragment
 
 class TopViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    private val pages: Map<Int, Pair<String, Class<out Fragment>>> = mapOf(
-            0 to ("Shops" to ShopsFragment::class.java),
-            1 to ("Makers" to MakersFragment::class.java)
+    private val pages: Map<Int, Pair<String, Fragment>> = mapOf(
+            0 to ("Shops" to ShopsFragment()),
+            1 to ("Makers" to MakersFragment())
     )
 
     override fun getItem(position: Int): Fragment {
-        return pages[position]?.second?.newInstance() ?: ShopsFragment()
+        return pages[position]?.second ?: ShopsFragment()
     }
 
     override fun getCount(): Int = pages.size
