@@ -22,19 +22,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <ListView
-            android:id="@+id/shops_listview"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shop_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:divider="@null"
-            android:dividerHeight="8dp"
             android:orientation="vertical"
             android:padding="8dp"
             android:visibility="gone"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:listitem="@layout/view_shop"
             tools:visibility="visible" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/shop_detail_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

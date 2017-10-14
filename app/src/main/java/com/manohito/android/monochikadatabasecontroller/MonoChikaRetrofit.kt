@@ -14,5 +14,7 @@ class MonoChikaRetrofit {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build()
         }
+
+        fun getApi() = retrofit.create(ApiService::class.java)
     }
 }
