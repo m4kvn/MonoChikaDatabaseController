@@ -39,8 +39,6 @@ class ShopCreateActivity : AppCompatActivity() {
             val longitude = mShopLongitude.text.toString().toFloatOrNull()
             val address = mShopAddress.text.toString()
 
-            Log.d("ShopCreateActivity", "name: $name, latitude: $latitude, longitude: $longitude, address: $address")
-
             MonoChikaRetrofit.getApi().createShops(name, latitude ?: 0f, longitude ?: 0f, address)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
