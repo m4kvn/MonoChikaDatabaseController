@@ -28,6 +28,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class DemoImageFragment : Fragment() {
+    private lateinit var mDemoImageProgressBar: ProgressBar
     private lateinit var mDemoImageRecyclerView: RecyclerView
     private lateinit var mDemoImageRecyclerAdapter: DemoImageRecyclerAdapter
 
@@ -36,22 +37,41 @@ class DemoImageFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         return inflater?.inflate(R.layout.fragment_demo_image, container, false)?.apply {
+            mDemoImageProgressBar = findViewById(R.id.demoImage_progressBar)
+            mDemoImageProgressBar.max = 0
+            mDemoImageProgressBar.progress = 0
             mDemoImageRecyclerView = findViewById(R.id.demo_image_recycler)
             mDemoImageRecyclerAdapter = object : DemoImageRecyclerAdapter(context) {
+
                 override fun updateImageView(holder: DemoImageViewHolder, demoImage: DemoImage) {
+                    mDemoImageProgressBar.max++
+
+                    if (mDemoImageProgressBar.visibility == GONE) {
+                        mDemoImageProgressBar.visibility = VISIBLE
+                        mDemoImageProgressBar.max = 0
+                        mDemoImageProgressBar.progress = 0
+                    }
+
                     holder.mProgress.visibility = VISIBLE
-                    Picasso.with(context)
-                            .load(demoImage.url)
-                            .into(holder.mImage, object : Callback {
-                                override fun onSuccess() {
-                                    Log.d("DemoImageRecycler", "onSuccess")
-                                    holder.mProgress.visibility = GONE
-                                }
-                                override fun onError() {
-                                    Log.d("DemoImageRecycler", "onError")
-                                    holder.mProgress.visibility = GONE
-                                }
-                            })
+                    Picasso.with(context).load(demoImage.url).into(holder.mImage, object : Callback {
+                        override fun onSuccess() {
+                            Log.d("DemoImageRecycler", "onSuccess")
+                            holder.mProgress.visibility = GONE
+                            mDemoImageProgressBar.progress++
+                            if (mDemoImageProgressBar.max <= mDemoImageProgressBar.progress) {
+                                mDemoImageProgressBar.visibility = GONE
+                            }
+                        }
+
+                        override fun onError() {
+                            Log.d("DemoImageRecycler", "onError")
+                            holder.mProgress.visibility = GONE
+                            mDemoImageProgressBar.progress++
+                            if (mDemoImageProgressBar.max <= mDemoImageProgressBar.progress) {
+                                mDemoImageProgressBar.visibility = GONE
+                            }
+                        }
+                    })
                 }
             }
             mDemoImageRecyclerView.adapter = mDemoImageRecyclerAdapter
