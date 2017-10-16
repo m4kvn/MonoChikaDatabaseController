@@ -6,7 +6,7 @@
     tools:context="com.manohito.android.monochikadatabasecontroller.fragment.MakersFragment">
 
     <ProgressBar
-        android:id="@+id/makers_progress_bar"
+        android:id="@+id/makers_progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
@@ -18,12 +18,12 @@
         tools:visibility="visible" />
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/makers_list_swipe"
+        android:id="@+id/makers_swipe"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/maker_recycler"
+            android:id="@+id/makers_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
@@ -35,5 +35,14 @@
             tools:visibility="visible" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/makers_create_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:src="@drawable/fab_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

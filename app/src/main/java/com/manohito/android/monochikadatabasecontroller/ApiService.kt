@@ -32,6 +32,9 @@ interface ApiService {
     @GET("makers.json")
     fun getMakers(): Observable<List<Maker>>
 
+    @POST("makers.json")
+    fun createMaker(@Query("maker[name]") name: String): Observable<Maker>
+
     @GET("makers/{id}.json")
     fun getMaker(@Path("id") makerId: Int): Call<Maker>
 

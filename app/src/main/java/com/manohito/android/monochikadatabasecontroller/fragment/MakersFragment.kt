@@ -1,6 +1,8 @@
 package com.manohito.android.monochikadatabasecontroller.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
@@ -16,6 +18,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
+import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
+import com.manohito.android.monochikadatabasecontroller.activity.MakerCreateActivity
 import com.manohito.android.monochikadatabasecontroller.adapter.MakerRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.Maker
 import com.manohito.android.monochikadatabasecontroller.view.holder.MakerViewHolder
@@ -26,14 +30,15 @@ class MakersFragment : Fragment() {
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mMakerRecyclerView: RecyclerView
     private lateinit var mMakerRecyclerAdapter: MakerRecyclerAdapter
+    private lateinit var mMakersCreateButton: FloatingActionButton
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         return inflater?.inflate(R.layout.fragment_makers, container, false)?.apply {
-            mProgressBar = findViewById(R.id.makers_progress_bar)
-            mMakerRecyclerView = findViewById(R.id.maker_recycler)
+            mProgressBar = findViewById(R.id.makers_progressBar)
+            mMakerRecyclerView = findViewById(R.id.makers_recycler)
             mMakerRecyclerAdapter = object : MakerRecyclerAdapter() {
                 override fun onItemClicked(holder: MakerViewHolder) {
                     holder.mExpandGroup.visibility = when (holder.mExpandGroup.visibility) {
@@ -60,7 +65,7 @@ class MakersFragment : Fragment() {
             divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.divider))
             mMakerRecyclerView.addItemDecoration(divider)
 
-            findViewById<SwipeRefreshLayout>(R.id.makers_list_swipe).apply {
+            findViewById<SwipeRefreshLayout>(R.id.makers_swipe).apply {
                 setOnRefreshListener {
                     MonoChikaRetrofit.getApi().getMakers()
                             .subscribeOn(Schedulers.io())
@@ -72,6 +77,12 @@ class MakersFragment : Fragment() {
                                 mMakerRecyclerAdapter.notifyDataSetChanged()
                             }
                 }
+            }
+
+            mMakersCreateButton = findViewById(R.id.makers_create_button)
+            mMakersCreateButton.setOnClickListener {
+                val intent = Intent(context, MakerCreateActivity::class.java)
+                startActivityForResult(intent, MainActivity.RESULT_MAKERS)
             }
         }
     }
