@@ -1,5 +1,6 @@
 package com.manohito.android.monochikadatabasecontroller
 
+import com.manohito.android.monochikadatabasecontroller.model.MainCategory
 import com.manohito.android.monochikadatabasecontroller.model.Maker
 import com.manohito.android.monochikadatabasecontroller.model.Shop
 import retrofit2.Call
@@ -23,9 +24,6 @@ interface ApiService {
                     @Query("shop[longitude]") longitude: Float,
                     @Query("shop[address]") address: String): Observable<Shop>
 
-    @GET("shops/{id}.json")
-    fun getShop(@Path("id") shopId: Int): Call<Shop>
-
     @DELETE("shops/{id}.json")
     fun deleteShop(@Path("id") shopId: Int): Observable<Shop>
 
@@ -35,9 +33,15 @@ interface ApiService {
     @POST("makers.json")
     fun createMaker(@Query("maker[name]") name: String): Observable<Maker>
 
-    @GET("makers/{id}.json")
-    fun getMaker(@Path("id") makerId: Int): Call<Maker>
-
     @DELETE("makers/{id}.json")
     fun deleteMaker(@Path("id") makerId: Int): Observable<Maker>
+
+    @GET("main_categories.json")
+    fun getMainCategories(): Observable<List<MainCategory>>
+
+    @POST("main_categories.json")
+    fun createMainCategory(@Query("main_category[name]") name: String): Observable<MainCategory>
+
+    @DELETE("main_categories/{id}.json")
+    fun deleteMainCategory(@Path("id") mainCategoryId: Int): Observable<MainCategory>
 }

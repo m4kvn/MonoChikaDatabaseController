@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val RESULT_SHOPS = 1000
         const val RESULT_MAKERS = 1001
+        const val RESULT_MAIN_CATEGORY = 1002
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         mTopViewPager.setCurrentItem(when (resultCode) {
             RESULT_SHOPS -> 0
             RESULT_MAKERS -> 1
+            RESULT_MAIN_CATEGORY -> 2
             else -> 0
         }, false)
     }
