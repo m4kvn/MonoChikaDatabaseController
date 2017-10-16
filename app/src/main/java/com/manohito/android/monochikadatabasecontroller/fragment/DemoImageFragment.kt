@@ -44,7 +44,6 @@ class DemoImageFragment : Fragment() {
             mDemoImageRecyclerAdapter = object : DemoImageRecyclerAdapter(context) {
 
                 override fun updateImageView(holder: DemoImageViewHolder, demoImage: DemoImage) {
-                    mDemoImageProgressBar.max++
 
                     if (mDemoImageProgressBar.visibility == GONE) {
                         mDemoImageProgressBar.visibility = VISIBLE
@@ -52,26 +51,21 @@ class DemoImageFragment : Fragment() {
                         mDemoImageProgressBar.progress = 0
                     }
 
-                    holder.mProgress.visibility = VISIBLE
-                    Picasso.with(context).load(demoImage.url).into(holder.mImage, object : Callback {
-                        override fun onSuccess() {
-                            Log.d("DemoImageRecycler", "onSuccess")
-                            holder.mProgress.visibility = GONE
-                            mDemoImageProgressBar.progress++
-                            if (mDemoImageProgressBar.max <= mDemoImageProgressBar.progress) {
-                                mDemoImageProgressBar.visibility = GONE
-                            }
-                        }
+                    mDemoImageProgressBar.max++
 
-                        override fun onError() {
-                            Log.d("DemoImageRecycler", "onError")
-                            holder.mProgress.visibility = GONE
-                            mDemoImageProgressBar.progress++
-                            if (mDemoImageProgressBar.max <= mDemoImageProgressBar.progress) {
-                                mDemoImageProgressBar.visibility = GONE
-                            }
-                        }
-                    })
+                    Picasso.with(context)
+                            .load(demoImage.url)
+                            .resizeDimen(R.dimen.image_height, R.dimen.image_height)
+                            .centerInside()
+                            .into(holder.mImage, object : Callback {
+                                override fun onSuccess() {
+                                    updateProgress()
+                                }
+
+                                override fun onError() {
+                                    updateProgress()
+                                }
+                            })
                 }
             }
             mDemoImageRecyclerView.adapter = mDemoImageRecyclerAdapter
@@ -80,6 +74,13 @@ class DemoImageFragment : Fragment() {
             divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.divider))
             mDemoImageRecyclerView.addItemDecoration(divider)
             mDemoImageRecyclerView.visibility = VISIBLE
+        }
+    }
+
+    private fun updateProgress() {
+        mDemoImageProgressBar.progress++
+        if (mDemoImageProgressBar.max <= mDemoImageProgressBar.progress) {
+            mDemoImageProgressBar.visibility = GONE
         }
     }
 }

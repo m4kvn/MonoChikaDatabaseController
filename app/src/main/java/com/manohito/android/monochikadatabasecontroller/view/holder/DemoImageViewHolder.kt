@@ -8,5 +8,4 @@ import com.manohito.android.monochikadatabasecontroller.R
 
 class DemoImageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val mImage: ImageView = view.findViewById(R.id.demoImage)
-    val mProgress: ProgressBar = view.findViewById(R.id.demoImage_progressBar)
 }
