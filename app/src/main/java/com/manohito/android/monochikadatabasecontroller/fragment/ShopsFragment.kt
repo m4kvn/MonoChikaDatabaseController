@@ -4,6 +4,7 @@ package com.manohito.android.monochikadatabasecontroller.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
@@ -29,6 +30,7 @@ import rx.schedulers.Schedulers
 
 
 class ShopsFragment : Fragment() {
+    private lateinit var mContainer: View
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mShopRecyclerView: RecyclerView
     private lateinit var mShopRecyclerAdapter: ShopRecyclerAdapter
@@ -39,6 +41,7 @@ class ShopsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         return inflater?.inflate(R.layout.fragment_shops, container, false)?.apply {
+            mContainer = findViewById(R.id.shops_container)
             mProgressBar = findViewById(R.id.shops_progress_bar)
             mShopRecyclerView = findViewById(R.id.shop_recycler)
 
@@ -56,9 +59,10 @@ class ShopsFragment : Fragment() {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
                                 removeAtPosition(position)
+                                Snackbar.make(mContainer, "店舗を削除しました", Snackbar.LENGTH_SHORT).show()
                             }, {
                                 Log.d("ShopsFragment", it.toString())
-                                Toast.makeText(context, "エラー: $it", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Error: $it", Toast.LENGTH_SHORT).show()
                             })
                 }
             }
