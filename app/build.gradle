@@ -1,8 +1,6 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -44,4 +42,5 @@ dependencies {
     compile "io.reactivex:rxandroid:1.1.0"
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
 }

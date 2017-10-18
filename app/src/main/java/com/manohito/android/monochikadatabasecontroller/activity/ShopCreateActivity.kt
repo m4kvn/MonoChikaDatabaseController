@@ -10,15 +10,16 @@ import android.widget.EditText
 import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
+import kotterknife.bindView
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class ShopCreateActivity : AppCompatActivity() {
-    private val mShopName: EditText by lazy { findViewById<EditText>(R.id.shop_create_name) }
-    private val mShopLatitude: EditText by lazy { findViewById<EditText>(R.id.shop_create_latitude) }
-    private val mShopLongitude: EditText by lazy { findViewById<EditText>(R.id.shop_create_longitude) }
-    private val mShopAddress: EditText by lazy { findViewById<EditText>(R.id.shop_create_address) }
-    private val mCreateButton: Button by lazy { findViewById<Button>(R.id.shop_create) }
+    private val mShopName: EditText by bindView(R.id.shop_create_name)
+    private val mShopLatitude: EditText by bindView(R.id.shop_create_latitude)
+    private val mShopLongitude: EditText by bindView(R.id.shop_create_longitude)
+    private val mShopAddress: EditText by bindView(R.id.shop_create_address)
+    private val mCreateButton: Button by bindView(R.id.shop_create)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

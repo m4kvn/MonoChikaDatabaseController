@@ -10,12 +10,13 @@ import android.widget.EditText
 import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
+import kotterknife.bindView
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class MainCategoryCreateActivity : AppCompatActivity() {
-    private val mNameEditText: EditText by lazy { findViewById<EditText>(R.id.main_category_create_name) }
-    private val mCreateButton: Button by lazy { findViewById<Button>(R.id.main_category_create) }
+    private val mNameEditText: EditText by bindView(R.id.main_category_create_name)
+    private val mCreateButton: Button by bindView(R.id.main_category_create)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

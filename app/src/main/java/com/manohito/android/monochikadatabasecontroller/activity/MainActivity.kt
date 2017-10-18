@@ -1,23 +1,18 @@
 package com.manohito.android.monochikadatabasecontroller.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.bumptech.glide.Glide
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.adapter.TopViewPagerAdapter
+import kotterknife.bindView
 
 class MainActivity : AppCompatActivity() {
-    private val mTopViewPager: ViewPager by lazy {
-        findViewById<ViewPager>(R.id.top_view_pager)
-    }
-    private val mTopTab: TabLayout by lazy {
-        findViewById<TabLayout>(R.id.top_tab)
-    }
+    private val mTopViewPager: ViewPager by bindView(R.id.top_view_pager)
+    private val mTopTab: TabLayout by bindView(R.id.top_tab)
 
     companion object {
         const val RESULT_SHOPS = 1000
