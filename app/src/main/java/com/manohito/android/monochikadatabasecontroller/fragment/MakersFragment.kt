@@ -20,7 +20,7 @@ import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
-import com.manohito.android.monochikadatabasecontroller.activity.MakerCreateActivity
+import com.manohito.android.monochikadatabasecontroller.activity.MakerCreateActivity_
 import com.manohito.android.monochikadatabasecontroller.adapter.MakerRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.Maker
 import com.manohito.android.monochikadatabasecontroller.view.holder.MakerViewHolder
@@ -85,7 +85,7 @@ class MakersFragment : Fragment() {
 
             mMakersCreateButton = findViewById(R.id.makers_create_button)
             mMakersCreateButton.setOnClickListener {
-                val intent = Intent(context, MakerCreateActivity::class.java)
+                val intent = Intent(context, MakerCreateActivity_::class.java)
                 startActivityForResult(intent, MainActivity.RESULT_MAKERS)
             }
         }

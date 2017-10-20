@@ -18,4 +18,5 @@
     <string name="hint_shop_name">店舗名</string>
     <string name="hint_maker_name">メーカー名</string>
     <string name="hint_main_category_name">メインカテゴリー名</string>
+    <string name="create_new_data">Create new %s</string>
 </resources>
