@@ -21,7 +21,7 @@ import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
-import com.manohito.android.monochikadatabasecontroller.activity.ShopCreateActivity
+import com.manohito.android.monochikadatabasecontroller.activity.ShopCreateActivity_
 import com.manohito.android.monochikadatabasecontroller.adapter.ShopRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.Shop
 import com.manohito.android.monochikadatabasecontroller.view.holder.ShopViewHolder
@@ -89,7 +89,7 @@ class ShopsFragment : Fragment() {
 
             mCreateButton = findViewById(R.id.shop_detail_create)
             mCreateButton.setOnClickListener {
-                val intent = Intent(context, ShopCreateActivity::class.java)
+                val intent = Intent(context, ShopCreateActivity_::class.java)
                 startActivityForResult(intent, MainActivity.RESULT_SHOPS)
             }
         }
