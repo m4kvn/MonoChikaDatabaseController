@@ -15,9 +15,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.manohito.android.monochikadatabasecontroller.ActivityResult
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
-import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
 import com.manohito.android.monochikadatabasecontroller.activity.MainCategoryCreateActivity_
 import com.manohito.android.monochikadatabasecontroller.adapter.MainCategoryRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.MainCategory
@@ -85,7 +85,7 @@ class MainCategoriesFragment : Fragment() {
             mCreateButton = findViewById(R.id.main_categories_create)
             mCreateButton.setOnClickListener {
                 val intent = Intent(context, MainCategoryCreateActivity_::class.java)
-                startActivityForResult(intent, MainActivity.RESULT_MAIN_CATEGORY)
+                startActivityForResult(intent, ActivityResult.RESULT_MAIN_CATEGORY)
             }
         }
     }

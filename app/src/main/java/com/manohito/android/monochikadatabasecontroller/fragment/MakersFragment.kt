@@ -17,9 +17,9 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.manohito.android.monochikadatabasecontroller.ActivityResult
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
-import com.manohito.android.monochikadatabasecontroller.activity.MainActivity
 import com.manohito.android.monochikadatabasecontroller.activity.MakerCreateActivity_
 import com.manohito.android.monochikadatabasecontroller.adapter.MakerRecyclerAdapter
 import com.manohito.android.monochikadatabasecontroller.model.Maker
@@ -86,7 +86,7 @@ class MakersFragment : Fragment() {
             mMakersCreateButton = findViewById(R.id.makers_create_button)
             mMakersCreateButton.setOnClickListener {
                 val intent = Intent(context, MakerCreateActivity_::class.java)
-                startActivityForResult(intent, MainActivity.RESULT_MAKERS)
+                startActivityForResult(intent, ActivityResult.RESULT_MAKERS)
             }
         }
     }

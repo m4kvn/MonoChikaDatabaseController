@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.manohito.android.monochikadatabasecontroller.ActivityResult
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.Util
@@ -49,7 +50,7 @@ open class MakerCreateActivity : AppCompatActivity() {
     }
 
     private fun finishActivity() {
-        setResult(MainActivity.RESULT_MAKERS)
+        setResult(ActivityResult.RESULT_MAKERS)
         finish()
     }
 }

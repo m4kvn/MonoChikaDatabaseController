@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.manohito.android.monochikadatabasecontroller.ActivityResult
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.Util
@@ -54,7 +55,7 @@ open class ShopCreateActivity : AppCompatActivity() {
     }
 
     private fun finishActivity() {
-        setResult(MainActivity.RESULT_SHOPS)
+        setResult(ActivityResult.RESULT_SHOPS)
         finish()
     }
 }
