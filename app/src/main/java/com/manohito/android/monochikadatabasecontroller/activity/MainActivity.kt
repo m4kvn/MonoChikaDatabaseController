@@ -1,6 +1,9 @@
 package com.manohito.android.monochikadatabasecontroller.activity
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -20,5 +23,11 @@ open class MainActivity : AppCompatActivity() {
     fun initTopViewPager() {
         mTopViewPager.adapter = TopViewPagerAdapter(supportFragmentManager)
         mTopTab.setupWithViewPager(mTopViewPager)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @AfterViews
+    fun initStatusBarColor() {
+        window.statusBarColor = getColor(R.color.colorPrimary)
     }
 }
