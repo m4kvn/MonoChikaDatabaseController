@@ -85,7 +85,7 @@ class MainCategoriesFragment : Fragment() {
             mCreateButton = findViewById(R.id.main_categories_create)
             mCreateButton.setOnClickListener {
                 val intent = Intent(context, MainCategoryCreateActivity_::class.java)
-                startActivityForResult(intent, ActivityResult.RESULT_MAIN_CATEGORY)
+                startActivityForResult(intent, ActivityResult.RESULT_MAIN_CATEGORIES)
             }
         }
     }

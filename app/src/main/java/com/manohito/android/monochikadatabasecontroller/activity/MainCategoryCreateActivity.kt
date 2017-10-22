@@ -1,13 +1,9 @@
 package com.manohito.android.monochikadatabasecontroller.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.manohito.android.monochikadatabasecontroller.ActivityResult
 import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
@@ -54,7 +50,7 @@ open class MainCategoryCreateActivity : AppCompatActivity() {
     }
 
     private fun finishActivity() {
-        setResult(ActivityResult.RESULT_MAIN_CATEGORY)
+        setResult(ActivityResult.RESULT_MAIN_CATEGORIES)
         finish()
     }
 }
