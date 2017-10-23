@@ -9,7 +9,7 @@ import retrofit2.http.*
 import rx.Observable
 
 
-interface ApiService {
+interface MonoChikaService {
 
     companion object {
         val API_BASE_URL = ""

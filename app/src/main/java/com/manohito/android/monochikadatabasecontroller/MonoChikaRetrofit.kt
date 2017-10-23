@@ -9,12 +9,12 @@ class MonoChikaRetrofit {
     companion object {
         val retrofit: Retrofit by lazy {
             Retrofit.Builder()
-                    .baseUrl(ApiService.API_BASE_URL)
+                    .baseUrl(MonoChikaService.API_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build()
         }
 
-        fun getApi() = retrofit.create(ApiService::class.java)
+        fun getApi() = retrofit.create(MonoChikaService::class.java)
     }
 }

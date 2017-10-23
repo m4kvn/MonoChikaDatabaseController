@@ -2,10 +2,7 @@ package com.manohito.android.monochikadatabasecontroller.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View.*
 import android.view.ViewGroup
-import com.manohito.android.monochikadatabasecontroller.ApiService
-import com.manohito.android.monochikadatabasecontroller.MonoChikaRetrofit
 import com.manohito.android.monochikadatabasecontroller.R
 import com.manohito.android.monochikadatabasecontroller.model.Shop
 import com.manohito.android.monochikadatabasecontroller.view.holder.ShopViewHolder
