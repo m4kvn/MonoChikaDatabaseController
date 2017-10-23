@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MonoChikaRetrofit {
 
     companion object {
-        val retrofit: Retrofit by lazy {
+        private val retrofit: Retrofit by lazy {
             Retrofit.Builder()
                     .baseUrl(MonoChikaService.API_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -15,6 +15,6 @@ class MonoChikaRetrofit {
                     .build()
         }
 
-        fun getApi() = retrofit.create(MonoChikaService::class.java)
+        fun getApi(): MonoChikaService = retrofit.create(MonoChikaService::class.java)
     }
 }
